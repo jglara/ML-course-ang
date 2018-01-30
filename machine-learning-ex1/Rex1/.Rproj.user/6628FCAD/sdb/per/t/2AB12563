@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "### ComputeCost\ncomputeCost <- function(X,y,theta) {\n  h <- X %*% theta\n  J <- sum( ((h - y) ^ 2) / ( 2 * length(y)) )\n}\n\n### GradientDescent\ngradientDescent <- function(X,y,theta,alpha,iterations){\n  m <- length(y)\n  J_history <- rep(0,iterations)\n  \n  for (i in 1:iterations) {\n    d <- (X %*% theta) - y\n    d <- (t(d) %*% X) * (alpha/m)\n    \n    theta <- theta - t(d)\n    \n    J_history[i] <- computeCost(X,y, theta)\n    \n  }\n  \n  list(theta,J_history)\n}\n\n#####\ndata1 <- read.csv(\"ex1data1.txt\",header = F)\nX <- data1[,1]\ny <- data[,2]\nm<-length(X)\n\nplot(X,y)\n\nX <- cbind(rep(1,m), X)\n\ntheta <- matrix(rep(0,2),2,1)\n\niterations <- 1500\nalpha <- 0.01\n\nJ <- computeCost(X,y,theta)\nprint(J)\nprint(computeCost(X,y,matrix(c(-1,2),2,1)))\n\nret<-gradientDescent(X,y,theta, alpha, iterations)\ntheta <- ret[[1]]\nJ_history <- ret[[2]]\n\n\n\nplot(X[,2], X%*% theta)",
+    "created" : 1513253159698.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "93509486",
+    "id" : "2AB12563",
+    "lastKnownWriteTime" : 1513326059,
+    "last_content_update" : 1513326059229,
+    "path" : "~/git/ML/machine-learning-ex1/Rex1/ex1.R",
+    "project_path" : "ex1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

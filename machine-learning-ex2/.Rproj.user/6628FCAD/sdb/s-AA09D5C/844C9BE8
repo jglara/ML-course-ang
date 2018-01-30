@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "function plotDecisionBoundary(theta, X, y)\n%PLOTDECISIONBOUNDARY Plots the data points X and y into a new figure with\n%the decision boundary defined by theta\n%   PLOTDECISIONBOUNDARY(theta, X,y) plots the data points with + for the \n%   positive examples and o for the negative examples. X is assumed to be \n%   a either \n%   1) Mx3 matrix, where the first column is an all-ones column for the \n%      intercept.\n%   2) MxN, N>3 matrix, where the first column is all-ones\n\n% Plot Data\nplotData(X(:,2:3), y);\nhold on\n\nif size(X, 2) <= 3\n    % Only need 2 points to define a line, so choose two endpoints\n    plot_x = [min(X(:,2))-2,  max(X(:,2))+2];\n\n    % Calculate the decision boundary line\n    plot_y = (-1./theta(3)).*(theta(2).*plot_x + theta(1));\n\n    % Plot, and adjust axes for better viewing\n    plot(plot_x, plot_y)\n    \n    % Legend, specific for the exercise\n    legend('Admitted', 'Not admitted', 'Decision Boundary')\n    axis([30, 100, 30, 100])\nelse\n    % Here is the grid range\n    u = linspace(-1, 1.5, 50);\n    v = linspace(-1, 1.5, 50);\n\n    z = zeros(length(u), length(v));\n    % Evaluate z = theta*x over the grid\n    for i = 1:length(u)\n        for j = 1:length(v)\n            z(i,j) = mapFeature(u(i), v(j))*theta;\n        end\n    end\n    z = z'; % important to transpose z before calling contour\n\n    % Plot z = 0\n    % Notice you need to specify the range [0, 0]\n    contour(u, v, z, [0, 0], 'LineWidth', 2)\nend\nhold off\n\nend\n",
+    "created" : 1513764351163.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4085157099",
+    "id" : "844C9BE8",
+    "lastKnownWriteTime" : 1489426802,
+    "last_content_update" : 1489426802,
+    "path" : "~/git/ML/machine-learning-ex2/ex2/plotDecisionBoundary.m",
+    "project_path" : "ex2/plotDecisionBoundary.m",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "matlab"
+}
